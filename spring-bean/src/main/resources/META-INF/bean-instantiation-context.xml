@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- 静态方法实例化bean -->
+    <bean id="user-by-static-method"
+          class="com.pcz.thinking.in.spring.ioc.overview.domain.User"
+          factory-method="createUser"/>
+
+    <bean id="userFactory" class="com.pcz.thinking.in.spring.bean.factory.DefaultUserFactory"/>
+    <!-- 实例方法实例化bean -->
+    <bean id="user-by-instance-method" factory-bean="userFactory" factory-method="createUser"/>
+
+    <!-- FactoryBean实例化 -->
+    <bean id="user-by-factory-bean" class="com.pcz.thinking.in.spring.bean.factory.UserFactoryBean"/>
+</beans>
