@@ -16,7 +16,9 @@ public class ObjectProviderDemo {
         applicationContext.refresh();
 
         lookupByObjectProvider(applicationContext);
+
         lookupIfAvailable(applicationContext);
+
         lookupByStreamOps(applicationContext);
 
         applicationContext.close();

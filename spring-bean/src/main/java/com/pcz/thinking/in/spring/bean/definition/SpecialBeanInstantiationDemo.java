@@ -2,8 +2,6 @@ package com.pcz.thinking.in.spring.bean.definition;
 
 import com.pcz.thinking.in.spring.bean.factory.DefaultUserFactory;
 import com.pcz.thinking.in.spring.bean.factory.UserFactory;
-import com.pcz.thinking.in.spring.ioc.overview.domain.User;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,7 +19,9 @@ public class SpecialBeanInstantiationDemo {
 
         // ServiceLoader方式
         serviceLoader();
-        displayServiceLoader(applicationContext.getBean("userFactoryServiceLoader", ServiceLoader.class));
+
+        ServiceLoader<UserFactory> userFactoryServiceLoader = applicationContext.getBean("userFactoryServiceLoader", ServiceLoader.class);
+        displayServiceLoader(userFactoryServiceLoader);
 
         // AutowireCapableBeanFactory方式
         AutowireCapableBeanFactory autowireCapableBeanFactory = applicationContext.getAutowireCapableBeanFactory();

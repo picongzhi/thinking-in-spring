@@ -17,13 +17,14 @@ public class BeanInitializationDemo {
         System.out.println("applicationContext启动完成");
 
         UserFactory userFactory = applicationContext.getBean(UserFactory.class);
+        System.out.println(userFactory);
 
         System.out.println("applicationContext准备关闭");
         applicationContext.close();
         System.out.println("applicationContext已关闭");
     }
 
-    @Lazy(false)
+    //    @Lazy
     @Bean(initMethod = "initUserFactory", destroyMethod = "doDestroy")
     public UserFactory userFactory() {
         return new DefaultUserFactory();

@@ -8,14 +8,18 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
 import java.util.Map;
 
+/**
+ * @author picongzhi
+ */
 public class BeanFactoryAsIoCContainerDemo {
     public static void main(String[] args) {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
 
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
         String location = "classpath:/META-INF/dependency-lookup-context.xml";
-        int beanCount = reader.loadBeanDefinitions(location);
-        System.out.println("Bean定义加载的数量: " + beanCount);
+        int beanDefinitionCount = reader.loadBeanDefinitions(location);
+        System.out.println("Bean定义加载的数量: " + beanDefinitionCount);
+
         lookupCollectionByType(beanFactory);
     }
 

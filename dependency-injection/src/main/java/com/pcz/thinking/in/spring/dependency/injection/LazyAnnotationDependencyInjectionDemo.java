@@ -34,12 +34,15 @@ public class LazyAnnotationDependencyInjectionDemo {
 
         applicationContext.refresh();
 
+        // 直接注入
         LazyAnnotationDependencyInjectionDemo demo = applicationContext.getBean(LazyAnnotationDependencyInjectionDemo.class);
         System.out.println("user: " + demo.user);
 
+        // ObjectProvider注入
         System.out.println("userObjectProvider: " + demo.userObjectProvider.getObject());
         demo.userObjectProvider.forEach(System.out::println);
 
+        // ObjectFactory注入
         System.out.println("usersObjectFactory: " + demo.usersObjectFactory.getObject());
 
         applicationContext.close();

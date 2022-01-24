@@ -4,6 +4,9 @@ import com.pcz.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * @author picongzhi
+ */
 public class BeanAliasDemo {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(

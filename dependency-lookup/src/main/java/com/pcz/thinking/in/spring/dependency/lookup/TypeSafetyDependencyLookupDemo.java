@@ -19,9 +19,13 @@ public class TypeSafetyDependencyLookupDemo {
         applicationContext.refresh();
 
         displayBeanFactoryGetBean(applicationContext);
+
         displayObjectFactoryGetBean(applicationContext);
+
         displayObjectProviderGetIfAvailable(applicationContext);
+
         displayListableBeanFactoryGetBeansOfType(applicationContext);
+        
         displayObjectProviderStreamOps(applicationContext);
 
         applicationContext.close();

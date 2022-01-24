@@ -10,8 +10,10 @@ public class BeanInstantiationExceptionDemo {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 
-        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(CharSequence.class);
-        applicationContext.registerBeanDefinition("errorBean", builder.getBeanDefinition());
+        applicationContext.registerBeanDefinition("errorBean",
+                BeanDefinitionBuilder
+                        .genericBeanDefinition(CharSequence.class)
+                        .getBeanDefinition());
 
         applicationContext.refresh();
         applicationContext.close();

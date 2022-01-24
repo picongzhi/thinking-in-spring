@@ -18,13 +18,16 @@ public class HierarchicalDependencyLookupDemo {
         ConfigurableListableBeanFactory beanFactory = applicationContext.getBeanFactory();
         System.out.println("parent bean factory: " + beanFactory.getParentBeanFactory());
 
+        // 创建parentBeanFactory
         HierarchicalBeanFactory parentBeanFactory = createParentBeanFactory();
         beanFactory.setParentBeanFactory(parentBeanFactory);
         System.out.println("parent bean factory: " + beanFactory.getParentBeanFactory());
 
+        // 展示本地bean
         displayContainsLocalBean(beanFactory, "user");
         displayContainsLocalBean(parentBeanFactory, "user");
 
+        // 展示bean，包含parent的bean
         displayContainsBean(beanFactory, "user");
         displayContainsBean(parentBeanFactory, "user");
 
@@ -44,7 +47,7 @@ public class HierarchicalDependencyLookupDemo {
     }
 
     private static void displayContainsLocalBean(HierarchicalBeanFactory beanFactory, String beanName) {
-        System.out.printf("BeanFactory[%s]是否包含local bean[%s]: %s\n",
+        System.out.printf("当前BeanFactory[%s]是否包含local bean[%s]: %s\n",
                 beanFactory, beanName, beanFactory.containsLocalBean(beanName));
     }
 
@@ -54,12 +57,6 @@ public class HierarchicalDependencyLookupDemo {
     }
 
     private static boolean containsBean(HierarchicalBeanFactory beanFactory, String beanName) {
-        BeanFactory parentBeanFactory = beanFactory.getParentBeanFactory();
-        if (parentBeanFactory instanceof HierarchicalBeanFactory) {
-            HierarchicalBeanFactory parentHierarchicalBeanFactory = (HierarchicalBeanFactory) parentBeanFactory;
-            return containsBean(parentHierarchicalBeanFactory, beanName);
-        }
-
-        return beanFactory.containsLocalBean(beanName);
+        return beanFactory.containsBean(beanName);
     }
 }

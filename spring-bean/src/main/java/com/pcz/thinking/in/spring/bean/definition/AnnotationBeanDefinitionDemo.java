@@ -1,7 +1,7 @@
 package com.pcz.thinking.in.spring.bean.definition;
 
 import com.pcz.thinking.in.spring.ioc.overview.domain.User;
-import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-import java.util.Map;
 
 /**
  * @author picongzhi
@@ -51,15 +49,15 @@ public class AnnotationBeanDefinitionDemo {
     }
 
     public static void registerUserBeanDefinition(BeanDefinitionRegistry registry, String beanName) {
-        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(User.class);
-        builder
+        BeanDefinitionBuilder builder = BeanDefinitionBuilder
+                .genericBeanDefinition(User.class)
                 .addPropertyValue("id", "1")
                 .addPropertyValue("name", "picongzhi");
-
+        AbstractBeanDefinition beanDefinition = builder.getBeanDefinition();
         if (StringUtils.hasText(beanName)) {
-            registry.registerBeanDefinition(beanName, builder.getBeanDefinition());
+            registry.registerBeanDefinition(beanName, beanDefinition);
         } else {
-            BeanDefinitionReaderUtils.registerWithGeneratedName(builder.getBeanDefinition(), registry);
+            BeanDefinitionReaderUtils.registerWithGeneratedName(beanDefinition, registry);
         }
     }
 

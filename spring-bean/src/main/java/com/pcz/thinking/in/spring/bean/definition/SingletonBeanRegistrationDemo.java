@@ -11,15 +11,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class SingletonBeanRegistrationDemo {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-        SingletonBeanRegistry singletonBeanRegistry = applicationContext.getBeanFactory();
         UserFactory userFactory = new DefaultUserFactory();
+
+        SingletonBeanRegistry singletonBeanRegistry = applicationContext.getBeanFactory();
         singletonBeanRegistry.registerSingleton("userFactory", userFactory);
 
         applicationContext.refresh();
 
         UserFactory userFactoryByLookup = applicationContext.getBean("userFactory", UserFactory.class);
         System.out.println(userFactory == userFactoryByLookup);
-
 
         applicationContext.close();
     }

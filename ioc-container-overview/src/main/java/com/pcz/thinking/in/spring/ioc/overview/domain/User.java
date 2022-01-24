@@ -1,15 +1,18 @@
 package com.pcz.thinking.in.spring.ioc.overview.domain;
 
 import com.pcz.thinking.in.spring.ioc.overview.domain.enums.City;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.core.io.Resource;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author picongzhi
  */
-public class User {
+public class User implements BeanNameAware {
     private Long id;
 
     private String name;
@@ -21,6 +24,8 @@ public class User {
     private List<City> lifeCities;
 
     private Resource configFileLocation;
+
+    private transient String beanName;
 
     public Long getId() {
         return id;
@@ -88,6 +93,21 @@ public class User {
         user.setName("picongzhi");
 
         return user;
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("User " + beanName + ", id: " + id + " init");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("User " + beanName + ", id: " + id + " destroy");
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        this.beanName = name;
     }
 }
 

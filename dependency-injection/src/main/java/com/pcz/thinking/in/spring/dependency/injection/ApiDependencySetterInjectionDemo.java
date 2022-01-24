@@ -26,9 +26,8 @@ public class ApiDependencySetterInjectionDemo {
     }
 
     private static BeanDefinition createUserHolderBeanDefinition() {
-        BeanDefinitionBuilder definitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(UserHolder.class);
-        definitionBuilder.addPropertyReference("user", "superUser");
-
-        return definitionBuilder.getBeanDefinition();
+        return BeanDefinitionBuilder.genericBeanDefinition(UserHolder.class)
+                .addPropertyReference("user", "superUser")
+                .getBeanDefinition();
     }
 }

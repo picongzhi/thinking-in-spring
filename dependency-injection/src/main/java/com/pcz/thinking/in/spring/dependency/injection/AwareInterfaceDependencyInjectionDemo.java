@@ -10,7 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 /**
  * @author picongzhi
  */
-public class AwareInterfaceDependencyInjectionDemo implements BeanFactoryAware, ApplicationContextAware {
+public class AwareInterfaceDependencyInjectionDemo
+        implements BeanFactoryAware, ApplicationContextAware {
     private static BeanFactory beanFactory;
 
     private static ApplicationContext applicationContext;

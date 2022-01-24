@@ -14,8 +14,8 @@ public class BeanCreationExceptionDemo {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 
-        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(POJO.class);
-        applicationContext.registerBeanDefinition("pojo", builder.getBeanDefinition());
+        applicationContext.registerBeanDefinition("pojo",
+                BeanDefinitionBuilder.genericBeanDefinition(POJO.class).getBeanDefinition());
 
         applicationContext.refresh();
         applicationContext.close();

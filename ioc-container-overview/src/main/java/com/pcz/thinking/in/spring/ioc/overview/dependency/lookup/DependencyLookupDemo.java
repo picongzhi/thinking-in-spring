@@ -16,7 +16,7 @@ public class DependencyLookupDemo {
     public static void main(String[] args) {
         // 配置xml配置文件，启动应用上下文
         BeanFactory beanFactory = new ClassPathXmlApplicationContext(
-                "classpath:META-INF/dependency-lookup-context.xml");
+                "classpath:/META-INF/dependency-lookup-context.xml");
 
         lookupInRealTime(beanFactory);
         lookupInLazy(beanFactory);
@@ -30,57 +30,57 @@ public class DependencyLookupDemo {
     /**
      * 实时查找
      *
-     * @param beanFactory
+     * @param beanFactory BeanFactory
      */
     private static void lookupInRealTime(BeanFactory beanFactory) {
         User user = (User) beanFactory.getBean("user");
-        System.out.println(user);
+        System.out.println("实时查找: " + user);
     }
 
     /**
-     * 延时查找
+     * 延迟查找
      *
-     * @param beanFactory
+     * @param beanFactory BeanFactory
      */
     private static void lookupInLazy(BeanFactory beanFactory) {
         ObjectFactory<User> objectFactory = (ObjectFactory<User>) beanFactory.getBean("objectFactory");
         User user = objectFactory.getObject();
-        System.out.println(user);
+        System.out.println("延迟查找: " + user);
     }
 
     /**
      * 按照类型查找
      *
-     * @param beanFactory
+     * @param beanFactory BeanFactory
      */
     private static void lookupByType(BeanFactory beanFactory) {
         User user = beanFactory.getBean(User.class);
-        System.out.println(user);
+        System.out.println("类型查找: " + user);
     }
 
     /**
      * 按照集合类型查找
      *
-     * @param beanFactory
+     * @param beanFactory BeanFactory
      */
     private static void lookupByCollectionType(BeanFactory beanFactory) {
         if (beanFactory instanceof ListableBeanFactory) {
             ListableBeanFactory listableBeanFactory = (ListableBeanFactory) beanFactory;
             Map<String, User> users = listableBeanFactory.getBeansOfType(User.class);
-            System.out.println(users);
+            System.out.println("集合类型: " + users);
         }
     }
 
     /**
      * 根据注解查找
      *
-     * @param beanFactory
+     * @param beanFactory BeanFactory
      */
     private static void lookupByAnnotationType(BeanFactory beanFactory) {
         if (beanFactory instanceof ListableBeanFactory) {
             ListableBeanFactory listableBeanFactory = (ListableBeanFactory) beanFactory;
             Map<String, User> superUsers = (Map) listableBeanFactory.getBeansWithAnnotation(Super.class);
-            System.out.println(superUsers);
+            System.out.println("注解: " + superUsers);
         }
     }
 }

@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
 
+/**
+ * @author picongzhi
+ */
 @Configuration
 public class ApplicationContextAsIoCContainerDemo {
     public static void main(String[] args) {

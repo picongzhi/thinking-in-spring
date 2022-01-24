@@ -14,7 +14,7 @@ public class NoUniqueBeanDefinitionExceptionDemo {
         applicationContext.refresh();
 
         try {
-            String bean = applicationContext.getBean(String.class);
+            applicationContext.getBean(String.class);
         } catch (NoUniqueBeanDefinitionException e) {
             e.printStackTrace();
         }
